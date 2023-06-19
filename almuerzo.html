@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADB</title>
+  <link rel="icon" type="image/png" href="logo.ico">
+
+  <script src="scripts.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="min.css/bootstrap.min.css">
+  <script src="mis/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" style="color: rgb(250, 246, 246);" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" style="color: rgb(247, 243, 243);" href="almuerzo.html">Almuerzo</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" style="color: rgb(247, 243, 243);" href="comida.html">Comida</a>
+          </li>
+          
+          <li class="nav-item active">
+            <a class="nav-link" style="color: rgb(247, 243, 243);" href="randos.html">Busqueda random</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <h2>Almuerzo</h2>
+
+    <!-- Barra de búsqueda -->
+    <div class="filters">
+      <input type="text" id="search-input" placeholder="Buscar almuerzo...">
+      <button id="search-button">Buscar</button>
+    </div>
+
+    <!-- Carrusel de fotos -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="imagenes/Mole.jpg" width="450px" height="320px" class="d-block w-100" alt="Mole">
+        </div>
+        <div class="carousel-item">
+          <img src="tac.jpg" width="450px" height="320px" class="d-block w-100" alt="Tacos">
+        </div>
+        <div class="carousel-item">
+          <img src="en.jpg" width="450px" height="320px" class="d-block w-100" alt="Enchiladas">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+
+    <!-- Opciones de comidas con filtros -->
+    <div class="filters">
+      <label for="filter">Filtro:</label>
+      <select id="filter">
+        <option value="az">A-Z</option>
+        <option value="za">Z-A</option>
+      </select>
+    </div>
+
+    <div class="meal-options">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="meal-card">
+            <img src="imagenes/Mole.jpg" width="100px" height="70px" alt="Mole">
+            <h4>Mole</h4>
+            <p>Arroz o fideo.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="meal-card">
+            <img src="imagenes/huebos.jpg" width="100px" height="70px" alt="Huevos">
+            <h4>Huevos</h4>
+            <p>Revueltos o ala mexicana.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="meal-card">
+            <img src="imagenes/Caldo.jpg" width="100px" height="70px" alt="Caldo">
+            <h4>Caldo</h4>
+            <p>Pollo o res.</p>
+          </div>
+        </div>
+        <!-- Agrega más opciones de comidas aquí -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container-fluid">
+      <p>© 2023 La Cabaña de los Amiguitos del Bosque. Todos los derechos reservados.</p>
+      <p><a class="footer-link" href="contacto.html">Contáctanos</a></p>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>

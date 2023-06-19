@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ADB</title>
+		
+		<link rel="stylesheet" type="text/css" href="estilos.css">
+		<link rel="icon" type="image/png" href="logo.ico">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
+			<div class="container-fluid">
+			  
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+					<a class="nav-link" style="color: rgb(250, 246, 246);" href="index.html">Inicio</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" style="color: rgb(247, 243, 243);" href="almuerzo.html">Almuerzo</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" style="color: rgb(248, 244, 244);" href="comida.html">Comida</a>
+				  </li>
+				  <<li class="nav-item">
+					<a class="nav-link" style="color: rgb(248, 244, 244);" href="randos.html">Busqueda random</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+		<!--
+		<h1>Randoms Meals</h1>
+		<div id="randommeal">Random meal will appear here</div>
+
+		<button onclick="generate_meal()">Click to generate...</button>
+	-->
+		<div class="container">
+			<div class="row text-center">
+				<h3>
+					¿Estas hambriento?
+				</h3>
+				<h5>Obten alguna de nuestras recetas</h5>
+				<button class="button-primary" id="get_meal">Buscar...</button>
+			</div>
+			<div id="meal" class="row meal"></div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	const get_meal_btn = document.getElementById('get_meal');
+	const meal_container = document.getElementById('meal');
+
+	get_meal_btn.addEventListener('click', () => {
+	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+		.then(res => res.json())
+		.then(res => {
+			createMeal(res.meals[0]);
+		})
+		.catch(e => {
+			console.warn(e);
+		});
+	});
+
+	const createMeal = meal => {
+	const ingredients = [];
+
+	// Get all ingredients from the object. Up to 20
+	for (let i = 1; i <= 20; i++) {
+		if (meal[`strIngredient${i}`]) {
+			ingredients.push(
+				`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`
+			);
+		} else {
+			// Stop if there are no more ingredients
+			break;
+		}
+	}
+
+	const newInnerHTML = `
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table" border="1">
+  				<thead>
+    				<tr>
+      					<th scope="col" width="220px">FOTO</th>
+      					<th scope="col" width="220px">CATEGORIA</th>
+      					<th scope="col" width="220px">AREA</th>
+      					<th scope="col" width="220px">INGREDIENTES</th>
+      					<th scope="col" width="220px">PLATILLO</th>
+      					<th scope="col" width="220px">SUGERENCIA</th>
+    				</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+      					<td width="220px" height="230px"><center><img src="${meal.strMealThumb}" alt="Meal Image" width="200px" height="200px"></center></td>
+      					<td>
+    						${meal.strCategory ? `<p><center>${meal.strCategory}</center></p>` : ''}
+						</td>
+						<td width="220px" height="230px">
+    						${meal.strArea ? `<p><center>${meal.strArea}</center></p>` : ''}
+						</td>
+						<td width="220px" height="230px">
+							<ul>
+								${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+							</ul>
+						</td>
+						<td width="220px" height="230px">
+							<h4><center>${meal.strMeal}</center></h4>
+						</td>
+						<td width="220px" height="230px">
+							${meal.strTags
+								? `<p><center>${meal.strTags
+									.split(',')
+									.join(', ')}</center></p>`
+								: ''
+							}
+						</td>
+    				</tr>
+    			</tbody>
+			</table>
+				
+			</div>
+		</div>
+	`;
+
+	meal_container.innerHTML = newInnerHTML;
+};
+</script>
